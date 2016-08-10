@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head><title>Twitter Clone</title>
+<!--<script type="text/javascript" src="thetwitter.js"></script>-->
+</head>
+<body>
+
+
+<div id="userInfo"></div>
+
+<div id="feeds"><h5>Tweets I follow</h5></div>
+
+<script>
+
+function loadFollowerTweets() {
+  var xhttp = new XMLHttpRequest();
+
+  //var ajaxUrl= "http://localhost:8080/getFollowerTweets?userid="+ getCookie("userid");
+  var ajaxUrl = "http://localhost:3000/followedtweets/beiying";
+  
+  console.log(ajaxUrl);
+  console.log(xhttp.responseText);
+  
+  xhttp.onreadystatechange = function() {
+    if (xhttp.readyState === 4 && xhttp.status === 200) {
+      //document.getElementById("feeds").innerHTML = xhttp.responseText;
+	  
+	  var obj = JSON.parse(xhttp.responseText);
+	 
+	  
+	  for (var i = 0; i < obj.length; i++) { 
+		  
+			console.log(i + " -> " + obj[i]);	
+
+			var cp = document.createElement('span');
+			
+			cp.innerHTML = obj[i] + "<br>";
+			document.getElementById("feeds").appendChild(cp);
+			
+			//cp.innerHTML = obj[i]['userid'] ;
+			//document.getElementById("feeds").appendChild(cp);
+			
+	  }
+ 
+	}
+
+  };
+  xhttp.open("GET", ajaxUrl, true);
+  xhttp.send();
+}
+
+loadFollowerTweets();
+
+//var theString ="User Logged-In: <a href='./UserOwnTweets.html'>" + getCookie("userid") + "</a>";
+//document.getElementById("userInfo").innerHTML=theString;
+
+</script>
+
+
+</body>
+</html>
