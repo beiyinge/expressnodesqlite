@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><title>Twitter Clone</title>
-<!--<script type="text/javascript" src="thetwitter.js"></script>-->
+<script type="text/javascript" src="thetwitter.js"></script>
 </head>
 <body>
 
@@ -16,7 +16,7 @@ function loadFollowerTweets() {
   var xhttp = new XMLHttpRequest();
 
   //var ajaxUrl= "http://localhost:8080/getFollowerTweets?userid="+ getCookie("userid");
-  var ajaxUrl = "http://localhost:3000/followedtweets/beiying";
+  var ajaxUrl = "http://localhost:3000/followedtweets/"+getCookie("userid");
   
   console.log(ajaxUrl);
   console.log(xhttp.responseText);
